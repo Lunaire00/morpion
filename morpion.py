@@ -9,7 +9,7 @@ class Grid:
 
         #Pour géré l'affichage des Label dans le jeu
         self.erreur_place = None
-        self.current_player = "Joueur 1"
+        self.current_player = "Joueur 1 X"
         #================================
 
         self.create_grid() #Appelle la création d'une grille la premier fois pour lancer le jeu
@@ -33,14 +33,14 @@ class Grid:
             self.game(self.current_player, "Cette case est prise")
             return
         #Si le c'est le joueur 1 qui joue on effectue cette partie
-        if self.current_player == "Joueur 1":
+        if self.current_player == "Joueur 1 X":
             self.list_x.append([row, col]) #On ajoute les coo à la liste du joueur
             self.cells[row][col].config(text="X") #on écrit X dans la case
             if self.check_victory("X"): #Si la fonction renvoie vrai fin du jeu
                 self.game("Fin du jeu", "Joueur 1 gagne !")
                 self.disable_cells()  #On empêche d'ajouter des choses
                 return
-            self.current_player = "Joueur 2"
+            self.current_player = "Joueur 2 O"
         #Sinon pareil mais pour le joueur 2 /même chose que le joueur 1\
         else:
             self.list_o.append([row, col])
@@ -49,7 +49,7 @@ class Grid:
                 self.game("Fin du jeu", "Joueur 2 gagne !")
                 self.disable_cells()
                 return
-            self.current_player = "Joueur 1"
+            self.current_player = "Joueur 1 X"
 
         if len(self.list_x) + len(self.list_o) == 9: #Si la somme de la longeur des deux liste vaut 9 c'est draw
             self.game("Fin du jeu", "Match nul !")
